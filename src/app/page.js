@@ -32,10 +32,16 @@ export default function Home() {
           <Sparkles color="var(--accent)" size={32} />
           <span className="gradient-text">DevDNA</span>
         </div>
-        <nav style={{ display: "flex", gap: "1rem" }}>
+        <nav className="header-actions">
           <a href="#how-it-works" className="btn-secondary">How it Works</a>
-          <a href="https://github.com/akshitsutharr" target="_blank" rel="noopener noreferrer">
-            <Github color="var(--foreground)" size={24} />
+          <a
+            href="https://github.com/akshitsutharr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="icon-btn"
+            aria-label="Open GitHub profile"
+          >
+            <Github color="currentColor" size={20} />
           </a>
         </nav>
       </header>
