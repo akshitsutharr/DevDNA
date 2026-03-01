@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DevDNA | GitHub Developer Personality Graph
 
-## Getting Started
+A futuristic, highly aesthetic web platform that analyzes your actual GitHub coding history to generate a stunning, dynamic SVG Profile Card.
 
-First, run the development server:
+DevDNA uses official GitHub GraphQL APIs to analyze your true exact commit count, your PR history, your issue tracking, and your repository statistics. Unlike unauthenticated REST API applications, this graph provides a 100% accurate representation of your GitHub contributions.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Why Do I Need a Token?
+To fetch exactly accurate "Total Commit" and "Total Issue" numbers (the same stats displayed on your official GitHub Profile page), DevDNA must communicate with GitHub's powerful **GraphQL API**. The GraphQL API requires a Personal Access Token (PAT).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Without your token, GitHub will simply not allow applications to read complex historical contribution data accurately.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## How To Run DevDNA
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone & Install**
+   ```bash
+   npm install
+   ```
 
-## Learn More
+2. **Generate a GitHub Personal Access Token**
+   - Go to [GitHub Developer Settings](https://github.com/settings/tokens/new)
+   - Add a Note (e.g., "DevDNA App")
+   - Select the `repo` and `read:user` scopes.
+   - Click "Generate token" and copy the token (it starts with `ghp_...`).
 
-To learn more about Next.js, take a look at the following resources:
+3. **Add Token to Environment**
+   - Rename `.env.example` to `.env.local`
+   - Paste your token inside:
+     ```env
+     GITHUB_TOKEN=ghp_your_personal_access_token_here
+     ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Start the Engine**
+   ```bash
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. **Generate Your DNA**
+   - Open `http://localhost:3000`
+   - Enter your GitHub Username.
+   - The API will query the GraphQL endpoint using your token and automatically construct your AI Personality Graph!
 
-## Deploy on Vercel
+## Themes Available
+- `dark` (Deep Space Aesthetic)
+- `light` (Clean Studio Aesthetic)
+- `neon` (Cyberpunk Aesthetic)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*Built by Akshit.*
