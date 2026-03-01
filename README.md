@@ -1,3 +1,5 @@
+[![DevDNA](https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=dark)](https://thedevdna.vercel.app)
+
 # DevDNA | GitHub Developer Personality Graph
 
 A futuristic, highly aesthetic web platform that analyzes your actual GitHub coding history to generate a stunning, dynamic SVG Profile Card.
