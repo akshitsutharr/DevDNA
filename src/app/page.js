@@ -19,7 +19,7 @@ export default function Home() {
   };
 
   const copyToClipboard = () => {
-    const markdown = `[![DevDNA](https://devdna.test/api/dev-dna?username=${username}&theme=${theme})](https://devdna.test)`;
+    const markdown = `[![DevDNA](https://thedevdna.vercel.app/api/dev-dna?username=${username}&theme=${theme})](https://devdna.test)`;
     navigator.clipboard.writeText(markdown);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -131,7 +131,7 @@ export default function Home() {
               </button>
             </div>
             <div style={{ background: "rgba(0,0,0,0.3)", padding: "1rem", borderRadius: "8px", fontFamily: "monospace", fontSize: "0.85rem", color: "var(--text-muted)", wordBreak: "break-all" }}>
-              {`[![DevDNA](https://devdna.test/api/dev-dna?username=${username}&theme=${theme})](https://devdna.test)`}
+              {`[![DevDNA](https://thedevdna.vercel.app/api/dev-dna?username=${username}&theme=${theme})](https://devdna.test)`}
             </div>
           </div>
         </section>
