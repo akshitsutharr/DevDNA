@@ -33,8 +33,8 @@ export default function Home() {
           <span className="gradient-text">DevDNA</span>
         </div>
         <nav style={{ display: "flex", gap: "1rem" }}>
-          <a href="#how-it-works" style={{ color: "var(--text-muted)", transition: "color 0.2s" }} onMouseOver={e => e.target.style.color="var(--foreground)"} onMouseOut={e => e.target.style.color="var(--text-muted)"}>How it Works</a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+          <a href="#how-it-works" className="btn-secondary">How it Works</a>
+          <a href="https://github.com/akshitsutharr" target="_blank" rel="noopener noreferrer">
             <Github color="var(--foreground)" size={24} />
           </a>
         </nav>
@@ -136,6 +136,44 @@ export default function Home() {
           </div>
         </section>
       </div>
+
+      <section id="how-it-works" className="glass-panel" style={{ marginTop: "3rem", padding: "2rem" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1.5rem", flexWrap: "wrap" }}>
+          <div style={{ maxWidth: "650px" }}>
+            <h2 style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>
+              How <span className="gradient-text">DevDNA</span> Works
+            </h2>
+            <p style={{ color: "var(--text-muted)", lineHeight: "1.7", marginBottom: "1.5rem" }}>
+              DevDNA reads your public GitHub profile data, computes your developer traits, and generates a shareable card you can paste directly into your README.
+            </p>
+          </div>
+          <a href="#" className="btn-primary" style={{ whiteSpace: "nowrap" }}>
+            Generate Your Card
+          </a>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1rem" }}>
+          {[
+            {
+              title: "1. Enter Username",
+              text: "Type any GitHub username to fetch their public repositories, contributions, and coding patterns."
+            },
+            {
+              title: "2. Pick a Theme",
+              text: "Choose dark, light, or neon style to match your profile and README vibe."
+            },
+            {
+              title: "3. Generate & Copy",
+              text: "Preview your DevDNA card live, then copy the markdown snippet and paste it into your README."
+            }
+          ].map((step) => (
+            <article key={step.title} style={{ padding: "1.25rem", borderRadius: "12px", border: "1px solid var(--card-border)", background: "rgba(255,255,255,0.02)" }}>
+              <h3 style={{ marginBottom: "0.5rem", fontSize: "1.05rem" }}>{step.title}</h3>
+              <p style={{ color: "var(--text-muted)", lineHeight: "1.6", fontSize: "0.95rem" }}>{step.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
       <footer style={{ marginTop: "6rem", borderTop: "1px solid var(--card-border)", paddingTop: "2rem", display: "flex", justifyContent: "space-between", color: "var(--text-muted)", fontSize: "0.9rem" }}>
         <p>© 2026 DevDNA. Built by Akshit.</p>

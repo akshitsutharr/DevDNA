@@ -48,6 +48,10 @@ body {
   transition: background-color var(--animation-speed) ease, color var(--animation-speed) ease;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -87,6 +91,26 @@ a {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px var(--accent-glow);
   filter: brightness(1.1);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--foreground);
+  font-weight: 600;
+  transition: all var(--animation-speed) ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 4px 18px var(--accent-glow);
+  transform: translateY(-1px);
 }
 
 .input-field {
