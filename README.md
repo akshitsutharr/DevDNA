@@ -14,7 +14,7 @@ Repo: akshitsutharr/DevDNA
   <a href="https://github.com/akshitsutharr/DevDNA/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/akshitsutharr/DevDNA?style=for-the-badge"></a>
   <a href="https://github.com/akshitsutharr/DevDNA/network/members"><img alt="Forks" src="https://img.shields.io/github/forks/akshitsutharr/DevDNA?style=for-the-badge"></a>
   <a href="https://github.com/akshitsutharr/DevDNA/issues"><img alt="Issues" src="https://img.shields.io/github/issues/akshitsutharr/DevDNA?style=for-the-badge"></a>
-  <a href="https://github.com/akshitsutharr/DevDNA/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/akshitsutharr/DevDNA?style=for-the-badge"></a>
+  <a href="https://github.com/akshitsutharr/DevDNA/blob/main/LICENSE"><img alt="LICENSE" src="https://img.shields.io/github/license/akshitsutharr/DevDNA?style=for-the-badge"></a>
   <a href="https://github.com/akshitsutharr/DevDNA/commits/main"><img alt="Last Commit" src="https://img.shields.io/github/last-commit/akshitsutharr/DevDNA?style=for-the-badge"></a>
 </p>
 
@@ -276,9 +276,7 @@ PRs and suggestions are welcome.
 ---
 
 ## 📄 License
-
-Add a license file to clarify usage (MIT/Apache-2.0/etc).  
-If you already have one, this section will automatically match it.
+[![License: Open Source](https://img.shields.io/badge/DevDNA-License%20Open%20Source-0ea5e9?style=for-the-badge)](https://github.com/akshitsutharr/DevDNA/blob/main/LICENSE)
 
 ---
 
