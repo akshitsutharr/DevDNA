@@ -3,9 +3,9 @@ import { fetchGitHubData } from '../../../lib/github';
 import { calculateDeveloperTraits } from '../../../lib/traits';
 import DevDNACard from '../../../components/DevDNACard';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
-// Cache fonts in-memory for edge re-visits
+// Cache fonts in-memory for warm Node.js invocations
 let fontDataReg = null;
 let fontDataBold = null;
 
@@ -64,7 +64,7 @@ export async function GET(request) {
       status: 200,
       headers: {
         'Content-Type': 'image/svg+xml',
-        // Cache at the edge for 4 hours
+        // Cache at the CDN edge for 4 hours
         'Cache-Control': 'public, s-maxage=14400, stale-while-revalidate=86400',
       },
     });
