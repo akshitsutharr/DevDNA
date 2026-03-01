@@ -27,13 +27,11 @@ Repo: akshitsutharr/DevDNA
 </p>
 
 <!-- Card preview -->
-<a href="https://thedevdna.vercel.app" title="Live Demo">
-  <img
-    src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=dark"
-    alt="DevDNA Card"
-    width="800"
-  />
-</a>
+<div style="display:flex; gap:10px; justify-content:center;">
+  <img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=dark" width="460"/>
+  <img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=light" width="460"/>
+  <img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=neon" width="460"/>
+</div>
 
 <br/>
 
