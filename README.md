@@ -25,14 +25,15 @@ Repo: akshitsutharr/DevDNA
   <img alt="GraphQL" src="https://img.shields.io/badge/GitHub%20GraphQL-API-181717?style=for-the-badge&logo=github">
   <img alt="Satori" src="https://img.shields.io/badge/Satori-SVG%20Rendering-6b4cff?style=for-the-badge">
 </p>
-
+  <a href="https://www.producthunt.com/products/devdna?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-devdna" target="_blank" rel="noopener noreferrer"><img alt="DevDNA - Turn your GitHub activity into a Developer Personality Card | Product Hunt" width="230" height="44" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1087860&amp;theme=light&amp;t=1772631503574"></a>
+</br>
+</br>
 <!-- Card preview -->
 <div style="display:flex; gap:10px; justify-content:center;">
   <img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=dark" width="460"/>
   <img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=light" width="460"/>
   <img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=neon" width="460"/>
 </div>
-
 <br/>
 
 <!-- Quick links -->
