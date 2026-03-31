@@ -29,11 +29,24 @@ Repo: akshitsutharr/DevDNA
 </br>
 </br>
 <!-- Card preview -->
-<div style="display:flex; gap:10px; justify-content:center;">
-  <img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=dark" width="460"/>
-  <img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=light" width="460"/>
-  <img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=neon" width="460"/>
-</div>
+<table align="center">
+  <tr>
+    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=dark" width="400"/></td>
+    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=light" width="400"/></td>
+  </tr>
+  <tr>
+    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=neon" width="400"/></td>
+    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=dracula" width="400"/></td>
+  </tr>
+  <tr>
+    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=monokai" width="400"/></td>
+    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=synthwave" width="400"/></td>
+  </tr>
+  <tr>
+    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=cyberpunk" width="400"/></td>
+    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=github-dark" width="400"/></td>
+  </tr>
+</table>
 <br/>
 
 <!-- Quick links -->
