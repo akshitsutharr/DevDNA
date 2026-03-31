@@ -14,7 +14,7 @@ Repo: akshitsutharr/DevDNA
   <a href="https://github.com/akshitsutharr/DevDNA/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/akshitsutharr/DevDNA?style=for-the-badge"></a>
   <a href="https://github.com/akshitsutharr/DevDNA/network/members"><img alt="Forks" src="https://img.shields.io/github/forks/akshitsutharr/DevDNA?style=for-the-badge"></a>
   <a href="https://github.com/akshitsutharr/DevDNA/issues"><img alt="Issues" src="https://img.shields.io/github/issues/akshitsutharr/DevDNA?style=for-the-badge"></a>
-  <a href="https://github.com/akshitsutharr/DevDNA/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/akshitsutharr/DevDNA?style=for-the-badge"></a>
+  <a href="https://github.com/akshitsutharr/DevDNA/blob/main/LICENSE"><img alt="LICENSE" src="https://img.shields.io/github/license/akshitsutharr/DevDNA?style=for-the-badge"></a>
   <a href="https://github.com/akshitsutharr/DevDNA/commits/main"><img alt="Last Commit" src="https://img.shields.io/github/last-commit/akshitsutharr/DevDNA?style=for-the-badge"></a>
 </p>
 
@@ -25,16 +25,15 @@ Repo: akshitsutharr/DevDNA
   <img alt="GraphQL" src="https://img.shields.io/badge/GitHub%20GraphQL-API-181717?style=for-the-badge&logo=github">
   <img alt="Satori" src="https://img.shields.io/badge/Satori-SVG%20Rendering-6b4cff?style=for-the-badge">
 </p>
-
+  <a href="https://www.producthunt.com/products/devdna?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-devdna" target="_blank" rel="noopener noreferrer"><img alt="DevDNA - Turn your GitHub activity into a Developer Personality Card | Product Hunt" width="230" height="44" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1087860&amp;theme=light&amp;t=1772631503574"></a>
+</br>
+</br>
 <!-- Card preview -->
-<a href="https://thedevdna.vercel.app" title="Live Demo">
-  <img
-    src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=dark"
-    alt="DevDNA Card"
-    width="800"
-  />
-</a>
-
+<div style="display:flex; gap:10px; justify-content:center;">
+  <img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=dark" width="460"/>
+  <img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=light" width="460"/>
+  <img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=neon" width="460"/>
+</div>
 <br/>
 
 <!-- Quick links -->
@@ -276,9 +275,7 @@ PRs and suggestions are welcome.
 ---
 
 ## 📄 License
-
-Add a license file to clarify usage (MIT/Apache-2.0/etc).  
-If you already have one, this section will automatically match it.
+[![License: Open Source](https://img.shields.io/badge/DevDNA-License%20Open%20Source-0ea5e9?style=for-the-badge)](https://github.com/akshitsutharr/DevDNA/blob/main/LICENSE)
 
 ---
 
