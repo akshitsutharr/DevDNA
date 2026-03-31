@@ -51,13 +51,22 @@ export async function fetchGitHubData(username) {
     
     // Now we must recursively fetch contribution calendars for EVERY year they've been on GitHub
     let absoluteTotalCommits = 0;
+    let allDays = [];
     
     // To respect rate limits and speed, we will batch these year queries into one giant GraphQL request dynamically
     let yearsQuery = `query contributionYears($login: String!) { user(login: $login) {`;
     for (let year = createdAt; year <= currentYear; year++) {
       yearsQuery += `
         year${year}: contributionsCollection(from: "${year}-01-01T00:00:00Z", to: "${year}-12-31T23:59:59Z") {
-          contributionCalendar { totalContributions }
+          contributionCalendar { 
+            totalContributions 
+            weeks {
+              contributionDays {
+                contributionCount
+                date
+              }
+            }
+          }
         }
       `;
     }
@@ -76,9 +85,54 @@ export async function fetchGitHubData(username) {
          Object.values(yearsData.data.user).forEach(collection => {
             if (collection && collection.contributionCalendar) {
                absoluteTotalCommits += collection.contributionCalendar.totalContributions;
+               
+               if (collection.contributionCalendar.weeks) {
+                 collection.contributionCalendar.weeks.forEach(week => {
+                   week.contributionDays.forEach(day => {
+                     allDays.push({ date: day.date, count: day.contributionCount });
+                   });
+                 });
+               }
             }
          });
        }
+    }
+
+    // Sort ascending by date
+    allDays.sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    let longestStreak = 0;
+    let currentStreak = 0;
+    let runningStreak = 0;
+    
+    // Calculate longest streak
+    for (let i = 0; i < allDays.length; i++) {
+        if (allDays[i].count > 0) {
+            runningStreak++;
+            longestStreak = Math.max(longestStreak, runningStreak);
+        } else {
+            runningStreak = 0;
+        }
+    }
+    
+    // Calculate current streak by iterating backwards
+    const today = new Date().toISOString().split('T')[0];
+    let todayIndex = allDays.findIndex(d => d.date === today);
+    if (todayIndex === -1) todayIndex = allDays.length - 1; // Fallback to last known day
+    
+    if (todayIndex >= 0) {
+        let i = todayIndex;
+        
+        // If today is 0, check if yesterday was > 0 to see if streak is still alive
+        if (allDays[i].count === 0 && i > 0 && allDays[i-1].count > 0) {
+            i--; // Move to yesterday, streak is technically still alive until end of today
+        }
+        
+        // Count backwards as long as count > 0
+        while (i >= 0 && allDays[i].count > 0) {
+            currentStreak++;
+            i--;
+        }
     }
 
     // We manually remap it so our frontend traits parser still works flawlessly.
@@ -88,6 +142,10 @@ export async function fetchGitHubData(username) {
       avatarUrl: user.avatarUrl,
       followers: user.followers,
       pullRequests: user.pullRequests,
+      streak: {
+        longest: longestStreak,
+        current: currentStreak
+      },
       contributionsCollection: {
         totalCommitContributions: absoluteTotalCommits, // TRUE historical aggregate
         totalIssueContributions: user.issues?.totalCount || 0,
@@ -100,6 +158,6 @@ export async function fetchGitHubData(username) {
 
   } catch (error) {
     console.error("Failed to fetch exact GitHub Data from GraphQL:", error);
-    throw new Error("DevDNA requires a valid GITHUB_TOKEN to fetch real exact data.");
+    throw error;
   }
 }

@@ -1,3 +1,89 @@
+export function getSkillIcon(language) {
+  if (!language) return null;
+  const map = {
+    'c++': 'cpp',
+    'c#': 'cs',
+    'f#': 'fs',
+    'jupyter notebook': 'py', // Fallback to python for DS
+    'html': 'html',
+    'css': 'css',
+    'javascript': 'js',
+    'typescript': 'ts',
+    'vue': 'vue',
+    'react': 'react',
+    'python': 'py',
+    'rust': 'rust',
+    'go': 'go',
+    'ruby': 'ruby',
+    'java': 'java',
+    'php': 'php',
+    'kotlin': 'kotlin',
+    'swift': 'swift',
+    'dart': 'dart',
+    'scala': 'scala',
+    'shell': 'bash',
+    'powershell': 'powershell',
+    'c': 'c',
+    'objective-c': 'objc',
+    'lua': 'lua',
+    'r': 'r',
+    'elixir': 'elixir',
+    'haskell': 'haskell',
+    'clojure': 'clojure',
+    'ocaml': 'ocaml',
+    'julia': 'julia',
+    'zig': 'zig',
+    'nim': 'nim',
+    'solidity': 'solidity',
+    'astro': 'astro',
+    'svelte': 'svelte'
+  };
+  const key = language.toLowerCase();
+  return map[key] || null;
+}
+
+function generateArchetype(builderScore, collabScore, impactScore, problemSolvingScore, consistencyScore, topLanguage, user) {
+  const adjectives = [];
+  if (builderScore > 75) adjectives.push("Relentless", "Prolific", "Chaos");
+  if (collabScore > 75) adjectives.push("Empathetic", "Harmonious", "Synergistic");
+  if (impactScore > 75) adjectives.push("Stellar", "Cosmic", "Vanguard", "Mystic");
+  if (problemSolvingScore > 75) adjectives.push("Zen", "Analytical", "Surgical");
+  if (consistencyScore > 75) adjectives.push("Unbreakable", "Eternal", "Iron");
+  
+  if (adjectives.length === 0) adjectives.push("Curious", "Wandering", "Versatile", "Nomadic", "Lucid");
+  
+  // Seed based on user data so it's consistent for the same stats
+  const seed = (user.followers?.totalCount || 0) + builderScore + problemSolvingScore;
+  const adj = adjectives[seed % adjectives.length];
+  
+  const nouns = [];
+  if (builderScore > 80 && collabScore < 40) nouns.push("Lone Wolf", "Architect", "Hermit", "Phantom");
+  else if (collabScore > 80 && impactScore > 70) nouns.push("Pillar", "Diplomat", "Leader", "Nexus");
+  else if (problemSolvingScore > 85) nouns.push("Bug Hunter", "Sniper", "Detective", "Oracle");
+  else if (impactScore > 90) nouns.push("Icon", "Legend", "Prophet", "Titan");
+  else if (builderScore > 70 && consistencyScore > 70) nouns.push("Shipper", "Machine", "Juggernaut");
+  else nouns.push("Explorer", "Crafter", "Artisan", "Engineer", "Maverick");
+
+  const noun = nouns[(seed * 2 + collabScore) % nouns.length];
+  
+  const langModifierMap = {
+    'javascript': 'Web', 'typescript': 'Web', 'html': 'UI', 'css': 'Style',
+    'python': 'Data', 'jupyter notebook': 'Data',
+    'c++': 'System', 'c': 'System', 'rust': 'Memory', 'go': 'Cloud',
+    'java': 'Enterprise', 'c#': 'Enterprise',
+    'ruby': 'Rails', 'php': 'Server',
+    'swift': 'Apple', 'kotlin': 'Android',
+    'shell': 'Terminal', 'bash': 'Terminal'
+  };
+  
+  let modifier = "Code";
+  if (topLanguage) {
+    modifier = langModifierMap[topLanguage.toLowerCase()] || topLanguage;
+  }
+  
+  return `${adj} ${modifier} ${noun}`;
+}
+
 export function calculateDeveloperTraits(user) {
   if (!user) return null;
 
@@ -28,39 +114,31 @@ export function calculateDeveloperTraits(user) {
   const stars = user.repositories?.nodes?.reduce((acc, repo) => acc + (repo.stargazerCount || 0), 0) || 0;
   
   // Calculate specific 0-100 traits
-  
-  // Builder Type (High commits = High Builder)
   const builderScore = Math.min(100, Math.round((commits / 1000) * 100));
-  
-  // Collaboration Score (PRs + Reviews)
   const collabScore = Math.min(100, Math.round(((prs + reviews) / 200) * 100));
-  
-  // Open Source Impact (Stars + Followers)
   const impactScore = Math.min(100, Math.round(((stars * 2 + (user.followers?.totalCount || 0) * 5) / 1000) * 100));
-  
-  // Problem Solving Profile (Issues + PRs)
   const problemSolvingScore = Math.min(100, Math.round(((issues * 2 + prs) / 150) * 100));
-  
-  // Consistency (Ratio of total compared to arbitrary high bar)
   const consistencyScore = Math.min(100, Math.round((totalContributions / 2500) * 100));
 
-  // Determine Archetype
-  let archetype = "Full-Stack Explorer";
-  if (builderScore > 80 && collabScore < 40) archetype = "Lone Wolf Architect";
-  else if (collabScore > 80 && impactScore > 70) archetype = "Community Pillar";
-  else if (problemSolvingScore > 85) archetype = "Bug Hunter Elite";
-  else if (impactScore > 90) archetype = "Open Source Legend";
-  else if (builderScore > 70 && consistencyScore > 70) archetype = "Relentless Shipper";
+  const archetype = generateArchetype(
+    builderScore, collabScore, impactScore, problemSolvingScore, consistencyScore, langs[0], user
+  );
 
-  // Normalize scores to ensure radar chart looks good (minimum 20)
   const normalize = (val) => Math.max(20, val || 20);
+
+  // Map to objects containing icon info
+  const enrichedLangs = langs.map(l => ({
+    name: l,
+    icon: getSkillIcon(l)
+  }));
 
   return {
     login: user.login,
     name: user.name || user.login,
     avatarUrl: user.avatarUrl,
-    topLanguages: langs,
+    topLanguages: enrichedLangs,
     archetype,
+    streak: user.streak || { longest: 0, current: 0 },
     stats: {
       stars,
       commits,

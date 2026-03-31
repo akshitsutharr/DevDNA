@@ -33,6 +33,21 @@ export async function GET(request) {
     const rawData = await fetchGitHubData(username);
     const data = calculateDeveloperTraits(rawData);
 
+    // Fetch Avatar from Dicebear backend to prevent Satori fetch issues
+    const safeSeed = data.archetype ? data.archetype.replace(/\s+/g, '_') : 'dev';
+    const dicebearUrl = `https://api.dicebear.com/9.x/adventurer/png?seed=${safeSeed}&backgroundColor=transparent`;
+    let avatarBase64 = null;
+    try {
+      const avatarRes = await fetch(dicebearUrl);
+      if (avatarRes.ok) {
+        const buffer = await avatarRes.arrayBuffer();
+        avatarBase64 = `data:image/png;base64,${Buffer.from(buffer).toString('base64')}`;
+      }
+    } catch (e) {
+      console.warn("Dicebear fetch failed:", e);
+    }
+    data.dicebearAvatar = avatarBase64;
+
     // 2. Load Fonts
     const [regFont, boldFont] = await loadFonts();
 
@@ -41,7 +56,7 @@ export async function GET(request) {
       <DevDNACard data={data} theme={theme} />,
       {
         width: 800,
-        height: 480,
+        height: 540,
         fonts: [
           {
             name: 'Inter', // Note: We still call it Inter in DevDNACard, but use Roboto under the hood
@@ -72,7 +87,7 @@ export async function GET(request) {
   } catch (error) {
     console.error('DevDNA API Error:', error);
     return new Response(
-      `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" fill="none"><rect width="100%" height="100%" fill="#1a1b23" rx="24"/><text x="50%" y="50%" fill="#ff4c4c" font-size="24" text-anchor="middle" font-family="sans-serif">Error generating DevDNA: ${error.message}</text></svg>`,
+      `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="540" fill="none"><rect width="100%" height="100%" fill="#1a1b23" rx="24"/><text x="50%" y="50%" fill="#ff4c4c" font-size="24" text-anchor="middle" font-family="sans-serif">Error generating DevDNA: ${error.message}</text></svg>`,
       {
         status: 500,
         headers: { 'Content-Type': 'image/svg+xml' }

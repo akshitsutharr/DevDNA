@@ -73,14 +73,15 @@ export default function Home() {
 
             <div style={{ marginBottom: "1.5rem" }}>
               <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "500", color: "var(--text-muted)" }}>Theme Preferences</label>
-              <div style={{ display: "flex", gap: "10px" }}>
-                {["dark", "light", "neon"].map((t) => (
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                {["dark", "light", "neon", "dracula", "monokai", "synthwave", "cyberpunk", "github-dark"].map((t) => (
                   <button
                     key={t}
                     type="button"
                     onClick={() => setTheme(t)}
                     style={{
-                      flex: 1,
+                      flex: "1 1 calc(25% - 10px)",
+                      minWidth: "90px",
                       padding: "10px",
                       background: theme === t ? "var(--accent)" : "rgba(255,255,255,0.05)",
                       color: theme === t ? "#fff" : "var(--foreground)",
