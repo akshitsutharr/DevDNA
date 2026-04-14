@@ -1,0 +1,9 @@
+{
+  "name": "DevDNA",
+  "short_name": "DevDNA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0b10",
+  "theme_color": "#7c3aed",
+  "icons": []
+}
