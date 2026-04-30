@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Github, Play, Copy, Check, Sparkles } from "lucide-react";
 
 export default function Home() {
@@ -10,11 +10,18 @@ export default function Home() {
   const [copied, setCopied] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setPreviewUrl(`/api/dev-dna?username=${encodeURIComponent(username)}&theme=${theme}`);
+    }, 150);
+
+    return () => clearTimeout(timer);
+  }, [username, theme]);
+
   const handleGenerate = (e) => {
     e.preventDefault();
     if (!username) return;
     setIsLoading(true);
-    setPreviewUrl(`/api/dev-dna?username=${encodeURIComponent(username)}&theme=${theme}`);
     setTimeout(() => setIsLoading(false), 800);
   };
 
