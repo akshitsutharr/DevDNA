@@ -27,7 +27,7 @@ export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const username = searchParams.get('username') || 'torvalds';
-    const theme = searchParams.get('theme') || 'dark';
+    const theme = (searchParams.get('theme') || 'dark').toLowerCase().replace(/_/g, '-');
 
     // 1. Fetch data
     const rawData = await fetchGitHubData(username);

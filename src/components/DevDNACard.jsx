@@ -8,9 +8,13 @@ export default function DevDNACard({ data, theme = "dark" }) {
     synthwave: { bg: "#2b213a", fg: "#f9f9f9", accent: "#ff2a6d", border: "rgba(255,42,109,0.3)", textMuted: "#8e7b93", cardBg: "#241b2f" },
     cyberpunk: { bg: "#fced0a", fg: "#000000", accent: "#ff003c", border: "rgba(0,0,0,0.2)", textMuted: "#00000080", cardBg: "#00e6fe" },
     "github-dark": { bg: "#0d1117", fg: "#c9d1d9", accent: "#58a6ff", border: "rgba(240,246,252,0.1)", textMuted: "#8b949e", cardBg: "#161b22" },
+    glass: { bg: "#0b1220", fg: "#f8fbff", accent: "#7dd3fc", border: "rgba(125,211,252,0.22)", textMuted: "#9fb3c8", cardBg: "rgba(15,23,42,0.72)" },
+    mono: { bg: "#111111", fg: "#f5f5f5", accent: "#d4d4d4", border: "rgba(255,255,255,0.12)", textMuted: "#a3a3a3", cardBg: "#1b1b1b" },
+    sunset: { bg: "#17111d", fg: "#fff8f1", accent: "#fb7185", border: "rgba(251,113,133,0.18)", textMuted: "#d3a6b0", cardBg: "#261826" },
   };
   
-  const colors = themes[theme] || themes.dark;
+  const selectedTheme = theme?.toLowerCase().replace(/_/g, "-") || "dark";
+  const colors = themes[selectedTheme] || themes.dark;
   const safeSeed = data.archetype ? data.archetype.replace(/\s+/g, '_') : 'dev';
   
   return (
@@ -55,16 +59,16 @@ export default function DevDNACard({ data, theme = "dark" }) {
               style={{ borderRadius: "50%", border: `3px solid ${colors.accent}`, boxShadow: `0 0 20px ${colors.accent}60`, objectFit: "cover" }} 
             />
           )}
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <h1 style={{ margin: 0, fontSize: "34px", fontWeight: 700 }}>{data.name}</h1>
+          <div style={{ display: "flex", flexDirection: "column", maxWidth: "320px", overflow: "hidden" }}>
+            <h1 style={{ margin: 0, fontSize: "34px", fontWeight: 700, whiteSpace: "nowrap" }}>{data.name}</h1>
             <p style={{ margin: 0, fontSize: "18px", color: colors.textMuted }}>@{data.login}</p>
           </div>
         </div>
         
-        <div style={{ display: "flex", alignItems: "center", background: `${colors.accent}15`, border: `1px solid ${colors.accent}40`, borderRadius: "100px", padding: "6px 6px 6px 20px", gap: "16px", boxShadow: `0 8px 24px rgba(0,0,0,0.15)` }}>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", justifyContent: "center" }}>
+        <div style={{ display: "flex", alignItems: "center", background: `${colors.accent}15`, border: `1px solid ${colors.accent}40`, borderRadius: "100px", padding: "6px 6px 6px 20px", gap: "16px", boxShadow: `0 8px 24px rgba(0,0,0,0.15)`, maxWidth: "380px", overflow: "hidden" }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", justifyContent: "center", overflow: "hidden" }}>
             <span style={{ fontSize: "10px", color: colors.textMuted, textTransform: "uppercase", letterSpacing: "1.5px", fontWeight: 800, marginBottom: "2px" }}>Developer Persona</span>
-            <span style={{ fontSize: "20px", fontWeight: 800, color: colors.fg, textShadow: `0 0 10px ${colors.accent}40`, letterSpacing: "-0.5px" }}>{data.archetype}</span>
+            <span style={{ fontSize: "20px", fontWeight: 800, color: colors.fg, textShadow: `0 0 10px ${colors.accent}40`, letterSpacing: "-0.5px", whiteSpace: "nowrap" }}>{data.archetype}</span>
           </div>
           {data.dicebearAvatar && (
             <div style={{ background: `linear-gradient(135deg, ${colors.accent}, ${colors.accent}cc)`, padding: "4px", borderRadius: "50%", display: "flex", boxShadow: `0 0 16px ${colors.accent}40` }}>
