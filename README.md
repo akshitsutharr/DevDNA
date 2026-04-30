@@ -31,20 +31,20 @@ Repo: akshitsutharr/DevDNA
 <!-- Card preview -->
 <table align="center">
   <tr>
-    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=dark" width="400"/></td>
-    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=light" width="400"/></td>
+    <td><img src="https://devdna.netlify.app/api/dev-dna?username=akshitsutharr&theme=dark" width="400"/></td>
+    <td><img src="https://devdna.netlify.app/api/dev-dna?username=akshitsutharr&theme=light" width="400"/></td>
   </tr>
   <tr>
-    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=neon" width="400"/></td>
-    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=dracula" width="400"/></td>
+    <td><img src="https://devdna.netlify.app/api/dev-dna?username=akshitsutharr&theme=neon" width="400"/></td>
+    <td><img src="https://devdna.netlify.app/api/dev-dna?username=akshitsutharr&theme=dracula" width="400"/></td>
   </tr>
   <tr>
-    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=monokai" width="400"/></td>
-    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=synthwave" width="400"/></td>
+    <td><img src="https://devdna.netlify.app/api/dev-dna?username=akshitsutharr&theme=monokai" width="400"/></td>
+    <td><img src="https://devdna.netlify.app/api/dev-dna?username=akshitsutharr&theme=synthwave" width="400"/></td>
   </tr>
   <tr>
-    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=cyberpunk" width="400"/></td>
-    <td><img src="https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=github-dark" width="400"/></td>
+    <td><img src="https://devdna.netlify.app/api/dev-dna?username=akshitsutharr&theme=cyberpunk" width="400"/></td>
+    <td><img src="https://devdna.netlify.app/api/dev-dna?username=akshitsutharr&theme=github-dark" width="400"/></td>
   </tr>
 </table>
 <br/>
@@ -162,15 +162,15 @@ GET /api/dev-dna?username=<github_login>&theme=<theme>
 
 ### Example URLs
 - Dark:
-  - `https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=dark`
+  - `https://devdna.netlify.app/api/dev-dna?username=akshitsutharr&theme=dark`
 - Light:
-  - `https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=light`
+  - `https://devdna.netlify.app/api/dev-dna?username=akshitsutharr&theme=light`
 - Neon:
-  - `https://thedevdna.vercel.app/api/dev-dna?username=akshitsutharr&theme=neon`
+  - `https://devdna.netlify.app/api/dev-dna?username=akshitsutharr&theme=neon`
 
 ### Embed in a README (Markdown)
 ```md
-[![DevDNA](https://thedevdna.vercel.app/api/dev-dna?username=YOUR_USERNAME&theme=dark)](https://thedevdna.vercel.app)
+[![DevDNA](https://devdna.netlify.app/api/dev-dna?username=YOUR_USERNAME&theme=dark)](https://devdna.netlify.app)
 ```
 
 ---

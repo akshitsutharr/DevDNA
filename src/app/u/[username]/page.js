@@ -2,7 +2,7 @@ export default async function UserCardPage({ params, searchParams }) {
   const { username } = await params;
   const theme = (await searchParams)?.theme || "dark";
 
-  const siteUrl = "https://thedevdna.vercel.app";
+  const siteUrl = "https://devdna.netlify.app";
   const cardUrl = `${siteUrl}/api/dev-dna?username=${encodeURIComponent(username)}&theme=${encodeURIComponent(theme)}`;
 
   return (

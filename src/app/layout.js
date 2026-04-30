@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const siteUrl = "https://thedevdna.vercel.app";
+const siteUrl = "https://devdna.netlify.app";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),

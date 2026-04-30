@@ -6,6 +6,6 @@ export default function robots() {
         allow: "/",
       },
     ],
-    sitemap: "https://thedevdna.vercel.app/sitemap.xml",
+    sitemap: "https://devdna.netlify.app/sitemap.xml",
   };
 }
