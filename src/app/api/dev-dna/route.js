@@ -4,6 +4,9 @@ import { calculateDeveloperTraits } from '../../../lib/traits';
 import DevDNACard from '../../../components/DevDNACard';
 
 export const runtime = 'nodejs';
+// CRITICAL: Force dynamic rendering to ensure searchParams are always respected in production (Netlify/Vercel)
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 // Cache fonts in-memory for warm Node.js invocations
 let fontDataReg = null;
@@ -26,6 +29,8 @@ async function loadFonts() {
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
+    
+    // Extract parameters with robust defaults
     const username = searchParams.get('username') || 'torvalds';
     const theme = (searchParams.get('theme') || 'dark').toLowerCase().replace(/_/g, '-');
 
@@ -33,7 +38,7 @@ export async function GET(request) {
     const rawData = await fetchGitHubData(username);
     const data = calculateDeveloperTraits(rawData);
 
-    // Fetch Avatar from Dicebear backend to prevent Satori fetch issues
+    // Fetch Avatar from Dicebear
     const safeSeed = data.archetype ? data.archetype.replace(/\s+/g, '_') : 'dev';
     const dicebearUrl = `https://api.dicebear.com/9.x/adventurer/png?seed=${safeSeed}&backgroundColor=transparent`;
     let avatarBase64 = null;
@@ -59,7 +64,7 @@ export async function GET(request) {
         height: 540,
         fonts: [
           {
-            name: 'Inter', // Note: We still call it Inter in DevDNACard, but use Roboto under the hood
+            name: 'Inter',
             data: regFont,
             weight: 400,
             style: 'normal',
@@ -74,13 +79,18 @@ export async function GET(request) {
       }
     );
 
-    // 4. Send Response
+    // 4. Send Response with specific headers for Netlify/GitHub README caching
     return new Response(svg, {
       status: 200,
       headers: {
         'Content-Type': 'image/svg+xml',
-        // Cache at the CDN edge for 4 hours
-        'Cache-Control': 'public, s-maxage=14400, stale-while-revalidate=86400',
+        // 's-maxage' can sometimes cause issues on Netlify if the CDN doesn't vary by query string correctly
+        // Using 'max-age=0' with 's-maxage' ensures the browser doesn't cache, but the CDN can.
+        // However, for READMEs, we often want 'stale-while-revalidate'.
+        'Cache-Control': 'public, max-age=0, s-maxage=14400, stale-while-revalidate=86400',
+        // Tell Netlify to vary the cache by query parameters
+        'Netlify-Vary': 'query',
+        'Vary': 'Accept-Encoding, Query-String',
       },
     });
 
@@ -90,7 +100,10 @@ export async function GET(request) {
       `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="540" fill="none"><rect width="100%" height="100%" fill="#1a1b23" rx="24"/><text x="50%" y="50%" fill="#ff4c4c" font-size="24" text-anchor="middle" font-family="sans-serif">Error generating DevDNA: ${error.message}</text></svg>`,
       {
         status: 500,
-        headers: { 'Content-Type': 'image/svg+xml' }
+        headers: { 
+          'Content-Type': 'image/svg+xml',
+          'Cache-Control': 'no-cache, no-store, must-revalidate'
+        }
       }
     );
   }
